@@ -1,37 +1,98 @@
 <div class="content">
-    <h1>Welcome to the Admin Dashboard</h1>
-    <div class="row">
-        <div class="col-md-4">
-            <div class="widget-card">
-                <h5>Users Overview</h5>
-                <p>Total Users: 1,234</p>
-                <p>Active Users: 987</p>
-                <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 80%;" aria-valuenow="80"
-                        aria-valuemin="0" aria-valuemax="100">80%</div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="widget-card">
-                <h5>Sales Summary</h5>
-                <p>Total Sales: $12,345</p>
-                <p>Today: $1,234</p>
-                <div class="progress">
-                    <div class="progress-bar bg-success" role="progressbar" style="width: 65%;" aria-valuenow="65"
-                        aria-valuemin="0" aria-valuemax="100">65%</div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="widget-card">
-                <h5>Tasks</h5>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Review new user registrations</li>
-                    <li class="list-group-item">Update product listings</li>
-                    <li class="list-group-item">Check system logs</li>
-                </ul>
-            </div>
-        </div>
+  <h1>Welcome to the Admin Dashboard</h1>
+
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+      <button
+        type="button"
+        class="btn-close"
+        aria-label="Close"
+        (click)="modal.dismiss('Cross click')"
+      ></button>
     </div>
+    <div class="modal-body">
+      <form>
+        <div class="mb-3">
+          <label for="dateOfBirth">Date of birth</label>
+          <div class="input-group">
+            <input
+              id="dateOfBirth"
+              class="form-control"
+              placeholder="yyyy-mm-dd"
+              name="dp"
+              ngbDatepicker
+            />
+     
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button
+        type="button"
+        class="btn btn-outline-secondary"
+        (click)="modal.close('Save click')"
+      >
+        Save
+      </button>
+    </div>
+  </ng-template>
+
+  <button class="btn btn-lg btn-outline-primary" (click)="open(content)">
+    Launch demo modal
+  </button>
+
+  <hr />
+
+  <div class="row">
+    <div class="col-md-4">
+      <div class="widget-card">
+        <h5>Users Overview</h5>
+        <p>Total Users: 1,234</p>
+        <p>Active Users: 987</p>
+        <div class="progress">
+          <div
+            class="progress-bar"
+            role="progressbar"
+            style="width: 80%"
+            aria-valuenow="80"
+            aria-valuemin="0"
+            aria-valuemax="100"
+          >
+            80%
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="widget-card">
+        <h5>Sales Summary</h5>
+        <p>Total Sales: $12,345</p>
+        <p>Today: $1,234</p>
+        <div class="progress">
+          <div
+            class="progress-bar bg-success"
+            role="progressbar"
+            style="width: 65%"
+            aria-valuenow="65"
+            aria-valuemin="0"
+            aria-valuemax="100"
+          >
+            65%
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="widget-card">
+        <h5>Tasks</h5>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Review new user registrations</li>
+          <li class="list-group-item">Update product listings</li>
+          <li class="list-group-item">Check system logs</li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </div>
