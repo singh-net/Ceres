@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using API.Data;
+using API.DTOs;
 using API.Entities;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,19 +15,31 @@ namespace API.Controllers
     public class PaymentsController : BaseApiController
     {
         private readonly DataContext _context;
-        public PaymentsController(DataContext context)
+        private readonly IMapper _mapper;
+
+        public PaymentsController(DataContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Payment>>> GetPayments()
+        public async Task<ActionResult<IEnumerable<PaymentToReturnDto>>> GetPayments()
         {
-            return await _context.Payments
+            var payments = await _context.Payments
                 .Include(p => p.Corporation)
                 .Include(p => p.Project)
                 .Include(p => p.Vendor)
                 .ToListAsync();
+
+            var paymentDtos = _mapper.Map<IEnumerable<PaymentToReturnDto>>(payments);
+
+            return Ok(paymentDtos);
+
+
+
+
+
         }
 
         [HttpGet("{id}")]

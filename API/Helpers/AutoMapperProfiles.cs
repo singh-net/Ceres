@@ -10,6 +10,10 @@ namespace API.Helpers
         public AutoMapperProfiles()
         {
             CreateMap<AppUser, MemberDto>();
+            CreateMap<Payment, PaymentToReturnDto>()
+           .ForMember(dest => dest.VendorName, opt => opt.MapFrom(src => src.Vendor.Name))
+           .ForMember(dest => dest.ProjectName, opt => opt.MapFrom(src => src.Project != null ? src.Project.Name : null))
+           .ForMember(dest => dest.CorporationName, opt => opt.MapFrom(src => src.Corporation.Name));
 
 
         }
