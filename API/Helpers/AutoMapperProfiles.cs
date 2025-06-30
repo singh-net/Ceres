@@ -15,6 +15,8 @@ namespace API.Helpers
            .ForMember(dest => dest.ProjectName, opt => opt.MapFrom(src => src.Project != null ? src.Project.Name : null))
            .ForMember(dest => dest.CorporationName, opt => opt.MapFrom(src => src.Corporation.Name));
 
+           CreateMap<PaymentToCreateDto, Payment>();
+
 
         }
     }

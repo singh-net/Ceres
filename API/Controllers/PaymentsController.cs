@@ -46,5 +46,15 @@ namespace API.Controllers
             return payment == null ? NotFound() : payment;
         }
 
+
+        [HttpPost]
+        public async Task<ActionResult<Payment>> CreatePayment(PaymentToCreateDto paymentToCreateDto)
+        {
+            var payment = _mapper.Map<Payment>(paymentToCreateDto);
+            _context.Payments.Add(payment);
+            await _context.SaveChangesAsync();
+            return CreatedAtAction(nameof(GetPayment), new { id = payment.Id }, payment);
+        }
+
     }
 }

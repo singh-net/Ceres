@@ -1,0 +1,49 @@
+<div class="content">
+  <h2>Vendors</h2>
+  <p>Manage vendors</p>
+  <hr />
+
+  <div class="row">
+    <div class="col-md-12">
+      <button class="btn btn-primary me-1 mb-3" routerLink="/vendors/add">
+        Add New Vendor
+      </button>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="card">
+      <div class="card-body">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Address</th>
+              <th>Balance</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let vendor of vendors$ | async">
+              <td>{{ vendor.id }}</td>
+              <td>{{ vendor.name }}</td>
+              <td>{{ vendor.address }}</td>
+              <td>{{ vendor.balance }}</td>
+              <td>
+                <button
+                  class="btn btn-sm btn-warning me-2"
+                  (click)="updateVendor(vendor)"
+                >
+                  Update
+                </button>
+      
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      
+      </div>
+    </div>
+  </div>
+</div>

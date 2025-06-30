@@ -1,113 +1,180 @@
 <div class="content">
+  <h2>Add Payment</h2>
 
+  <p>Please fill in the details below to add a new payment.</p>
 
-    <h2>Add Payment</h2>
-
-    <p>Please fill in the details below to add a new payment.</p>
-
-    <div class="row">
-
-
-        <div class="col-6">
-            <form [formGroup]="paymentForm" (ngSubmit)="onSubmit()" class="mt-4 needs-validation" novalidate>
-
-                <div class="mb-3">
-                    <label for="date" class="form-label">Date *</label>
-                    <input type="date" id="date" class="form-control" formControlName="date"
-                        [ngClass]="{'is-invalid': submitted && f['date'].invalid}">
-                    <div class="invalid-feedback" *ngIf="submitted && f['date'].errors && f['date'].errors['required']">
-                        Date is required.
-                    </div>
-                </div>
-
-                <div class="mb-3">
-                    <label for="checkNumber" class="form-label">Check Number</label>
-                    <input type="text" id="checkNumber" class="form-control" formControlName="checkNumber">
-                </div>
-
-                <div class="mb-3">
-                    <label for="paymentAmount" class="form-label">Payment Amount *</label>
-                    <input type="number" id="paymentAmount" class="form-control" formControlName="paymentAmount"
-                        [ngClass]="{'is-invalid': submitted && f['paymentAmount'].invalid}">
-                    <div class="invalid-feedback"
-                        *ngIf="submitted && f['paymentAmount'].errors && f['paymentAmount'].errors['required']">
-                        Payment amount is required.
-                    </div>
-                </div>
-
-                <div class="mb-3">
-                    <label for="depositAmount" class="form-label">Deposit Amount</label>
-                    <input type="number" id="depositAmount" class="form-control" formControlName="depositAmount">
-                </div>
-
-
-                <div class="mb-3">
-                    <label for="notes" class="form-label">Notes</label>
-                    <textarea id="notes" class="form-control" formControlName="notes"></textarea>
-                </div>
-
-                <div class="mb-3">
-                    <label for="mode" class="form-label">Mode</label>
-                    <input type="text" id="mode" class="form-control" formControlName="mode">
-                </div>
-  
-
-                <div class="mb-3">
-                    <label for="vendorName" class="form-label">Vendor Name *</label>
-
-                    <input id="vendorName" name="vendorName" type="text" class="form-control"
-                        [(ngModel)]="payment.vendorName" [ngbTypeahead]="search" [inputFormatter]="vendorFormatter"
-                        [resultFormatter]="vendorFormatter" [editable]="false" #vendorName="ngModel" required />
-
-                    <div class="invalid-feedback"
-                        *ngIf="vendorName.invalid && (vendorName.dirty || vendorName.touched)">
-                        Vendor name is required.
-                    </div>
-                </div>
-
-
-
-
-
-                <div class="mb-3">
-                    <label for="projectName" class="form-label">Project Name *</label>
-                    <select id="projectName" name="projectName" class="form-select" required
-                        [(ngModel)]="payment.projectName" #projectName="ngModel">
-                        <option value="" disabled selected>Select project</option>
-                        <option *ngFor="let project of projectNames" [value]="project">{{ project }}</option>
-                    </select>
-                    <div class="invalid-feedback"
-                        *ngIf="projectName.invalid && (projectName.dirty || projectName.touched)">
-                        Project name is required.
-                    </div>
-                </div>
-
-                <div class="mb-3">
-                    <label for="corporationName" class="form-label">Corporation Name *</label>
-                    <select id="corporationName" name="corporationName" class="form-select" required
-                        [(ngModel)]="payment.corporationName" #corporationName="ngModel">
-                        <option value="" disabled selected>Select corporation</option>
-                        <option *ngFor="let corp of corporationNames" [value]="corp">{{ corp }}</option>
-                    </select>
-                    <div class="invalid-feedback"
-                        *ngIf="corporationName.invalid && (corporationName.dirty || corporationName.touched)">
-                        Corporation name is required.
-                    </div>
-                </div>
-
-                <div class="mb-3">
-                    <label for="attachment" class="form-label">Attachment</label>
-                    <input type="file" id="attachment" name="attachment" class="form-control"
-                        (change)="onFileChange($event)">
-                </div>
-
-                <button type="submit" class="btn btn-primary">Add Payment</button>
-
-                <!-- <button type="submit" class="btn btn-primary" [disabled]="paymentForm.invalid">Submit</button> -->
-            </form>
-
+  <div class="row">
+    <div class="col-6">
+      <form
+        [formGroup]="paymentForm"
+        (ngSubmit)="onSubmit()"
+        class="mt-4 needs-validation"
+        novalidate
+      >
+        <div class="mb-3">
+          <label for="date" class="form-label">Date *</label>
+          <input
+            type="date"
+            id="date"
+            class="form-control"
+            formControlName="date"
+            [ngClass]="{'is-invalid': submitted && f['date'].invalid}"
+          />
+          <div
+            class="invalid-feedback"
+            *ngIf="submitted && f['date'].errors && f['date'].errors['required']"
+          >
+            Date is required.
+          </div>
         </div>
 
+        <div class="mb-3">
+          <label for="checkNumber" class="form-label">Check Number</label>
+          <input
+            type="text"
+            id="checkNumber"
+            class="form-control"
+            formControlName="checkNumber"
+          />
+        </div>
 
+        <div class="mb-3">
+          <label for="paymentAmount" class="form-label">Payment Amount *</label>
+          <input
+            type="number"
+            id="paymentAmount"
+            class="form-control"
+            formControlName="paymentAmount"
+            [ngClass]="{'is-invalid': submitted && f['paymentAmount'].invalid}"
+          />
+          <div
+            class="invalid-feedback"
+            *ngIf="submitted && f['paymentAmount'].errors && f['paymentAmount'].errors['required']"
+          >
+            Payment amount is required.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="depositAmount" class="form-label">Deposit Amount</label>
+          <input
+            type="number"
+            id="depositAmount"
+            class="form-control"
+            formControlName="depositAmount"
+            [ngClass]="{'is-invalid': submitted && f['depositAmount'].invalid}"
+          />
+
+          <div
+            class="invalid-feedback"
+            *ngIf="submitted && f['depositAmount'].errors && f['depositAmount'].errors['required']"
+          >
+            Deposit amount is required (Enter 0 if it is not a deposit).
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="notes" class="form-label">Notes</label>
+          <textarea
+            id="notes"
+            class="form-control"
+            formControlName="notes"
+          ></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label for="mode" class="form-label">Mode</label>
+          <input
+            type="text"
+            id="mode"
+            class="form-control"
+            formControlName="mode"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="vendorName" class="form-label">Vendor Name *</label>
+          <input
+            id="vendorName"
+            type="text"
+            class="form-control"
+            formControlName="vendorName"
+            [ngbTypeahead]="search"
+            [inputFormatter]="vendorFormatter"
+            [resultFormatter]="vendorFormatter"
+            [editable]="false"
+            [ngClass]="{'is-invalid': submitted && f['vendorName'].invalid}"
+            required
+          />
+          <div
+            class="invalid-feedback"
+            *ngIf="submitted && f['vendorName'].errors && f['vendorName'].errors['required']"
+          >
+            Vendor name is required.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="projectName" class="form-label">Project Name *</label>
+          <select
+            id="projectName"
+            class="form-select"
+            formControlName="projectName"
+            [ngClass]="{'is-invalid': submitted && f['projectName'].invalid}"
+            required
+          >
+            <option value="" disabled>Select project</option>
+            <option *ngFor="let project of projectNames" [value]="project">
+              {{ project }}
+            </option>
+          </select>
+          <div
+            class="invalid-feedback"
+            *ngIf="submitted && f['projectName'].errors && f['projectName'].errors['required']"
+          >
+            Project name is required.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="corporationName" class="form-label"
+            >Corporation Name *</label
+          >
+          <select
+            id="corporationName"
+            class="form-select"
+            formControlName="corporationName"
+            [ngClass]="{'is-invalid': submitted && f['corporationName'].invalid}"
+            required
+          >
+            <option value="" disabled>Select corporation</option>
+            <option *ngFor="let corp of corporationNames" [value]="corp">
+              {{ corp }}
+            </option>
+          </select>
+          <div
+            class="invalid-feedback"
+            *ngIf="submitted && f['corporationName'].errors && f['corporationName'].errors['required']"
+          >
+            Corporation name is required.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="attachment" class="form-label">Attachment</label>
+          <input
+            type="file"
+            id="attachment"
+            name="attachment"
+            class="form-control"
+            (change)="onFileChange($event)"
+          />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Add Payment</button>
+
+        <!-- <button type="submit" class="btn btn-primary" [disabled]="paymentForm.invalid">Submit</button> -->
+      </form>
     </div>
+  </div>
 </div>
