@@ -31,15 +31,8 @@ namespace API.Controllers
                 .Include(p => p.Project)
                 .Include(p => p.Vendor)
                 .ToListAsync();
-
             var paymentDtos = _mapper.Map<IEnumerable<PaymentToReturnDto>>(payments);
-
             return Ok(paymentDtos);
-
-
-
-
-
         }
 
         [HttpGet("{id}")]

@@ -1,0 +1,94 @@
+<div class="content">
+    <h2>Vendor Payments</h2>
+    <p>Total Amount: $5362.59 | Total Entries: 533</p>
+    <hr>
+
+
+    <div class="row g-3 mb-3">
+
+        <div class="col-md-2">
+            <label for="inputEmail4" class="form-label">Corporation</label>
+            <input type="text" class="form-control">
+        </div>
+
+        <div class="col-md-2">
+            <label for="inputPassword4" class="form-label">Vendor</label>
+            <input type="text" class="form-control">
+        </div>
+
+        <div class="col-md-2">
+            <label for="inputEmail4" class="form-label">Project</label>
+            <input type="text" class="form-control">
+        </div>
+
+        <div class="col-md-2">
+            <label for="inputPassword4" class="form-label">Date Range</label>
+            <input type="text" class="form-control">
+        </div>
+
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Filter Results</button>
+        </div>
+    </div>
+
+    <!-- 
+    <div class="row mb-2">
+        <div class="col-md-6">
+            <button class="btn btn-primary me-1">Add Payment</button>
+            <button class="btn btn-primary">Add Payment</button>
+        </div>
+
+        <div class="col-md-6">
+
+        </div>
+    </div> -->
+    <div class="row">
+        <div class="card">
+            <div class="card-body">
+                <table class="table  table-hover table-striped  table-sm">
+                    <thead>
+                        <tr>
+                            <th>DATE</th>
+                            <th>VENDOR</th>
+                            <th>CHECK NUMBER</th>
+                            <th>$ DEPIT</th>
+                            <th>$ CREDIT</th>
+                            <th>CORPORATION</th>
+                            <th>PROJECT</th>
+                            <th>MODE</th>
+                            <th>NOTES</th>
+                            <th>ATTACHMENT</th>
+                            <!-- Add more columns as needed -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let payment of payments$ | async">
+                            <td>{{ payment.date | date:'MM/dd/yyyy' }}</td>
+                            <td>{{ payment.vendorName }}</td>
+                            <td>{{ payment.checkNumber }}</td>
+                            <td>{{ payment.paymentAmount }}</td>
+                            <td>{{ payment.depositAmount }}</td>
+                            <td>{{ payment.corporationName }}</td>
+                            <td>{{ payment.projectName }}</td>
+                            <td>{{ payment.mode }}</td>
+                            <td>{{ payment.notes }}</td>
+                            <td>{{ payment.attachment }}</td>
+                            <!-- Add more fields as needed -->
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- 
+       id: number;
+    date: Date;
+    checkNumber?: string;
+    paymentAmount: number;
+    depositAmount: number;
+    notes?: string;
+    mode?: string;
+    vendorName?: string;
+    projectName?: string;
+    corporationName?: string;
+    attachment?: string; -->
